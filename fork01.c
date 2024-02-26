@@ -4,17 +4,21 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include <process.h>
-int main(int argc,char **argv){
-	pid_t Ana_pid,cocuk_pid;
-	Ana_pid=getpid();
-	printf("PID:%d\n",Ana_pid);
-	cocuk_pid=fork();
-	if(cocuk_pid==0){
-		printf("Bu cocuk proses:%d\n",getpid());
-	}else {
-		printf("Bu ana proses:%d\n",getppid());
-	}
-	sleep(10);
-	return 0;
+
+int main(int argc, char **argv) {
+    pid_t parent_pid, child_pid;
+    parent_pid = getpid();
+    printf("PID: %d\n", parent_pid);
+    
+    child_pid = fork();
+    
+    if (child_pid == 0) {
+        printf("This is the child process: %d\n", getpid());
+    } else {
+        printf("This is the parent process: %d\n", getppid());
+    }
+    
+    sleep(10);
+    return 0;
 }
 
